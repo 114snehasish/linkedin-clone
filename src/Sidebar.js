@@ -1,5 +1,6 @@
 import './Sidebar.css';
 import { Avatar } from '@material-ui/core';
+import avatar from './avatar.jpg';
 
 function Sidebar() {
   const recentItem = (topic) => (
@@ -16,7 +17,7 @@ function Sidebar() {
           alt=''
           className='sidebar__top'
         />
-        <Avatar className='sidebar__avatar' />
+        <Avatar className='sidebar__avatar' src={avatar} />
         <h2>Snehasish Chakraborty</h2>
         <h4>contact@snehasish-chakraborty.com</h4>
       </div>
