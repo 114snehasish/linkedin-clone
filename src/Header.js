@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import './Header.css';
 import SearchIcon from '@material-ui/icons/Search';
 import HeaderOption from './HeaderOption';
@@ -7,9 +8,16 @@ import GroupIcon from '@material-ui/icons/Group';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import ChatIcon from '@material-ui/icons/Chat';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import avatar from './avatar.jpg';
+import { logout } from './features/user/userSlice';
+import { auth } from './Firabase';
 
 function Header() {
+  const dispatch = useDispatch();
+  const logoutOfApp = () => {
+    dispatch(logout());
+    auth.signOut();
+  };
+
   const headerOption = [
     {
       icon: HomeIcon,
@@ -42,14 +50,14 @@ function Header() {
         <div className='header__search'>
           {/* search icon */}
           <SearchIcon />
-          <input type='text' />
+          <input type='text' placeholder='Search' />
         </div>
       </div>
       <div className='header__right'>
         {headerOption.map((e, idx) => (
           <HeaderOption key={idx} Icon={e.icon} title={e.title} />
         ))}
-        <HeaderOption avatar={avatar} title='Me' />
+        <HeaderOption avatar={true} title='Logout' onClick={logoutOfApp} />
       </div>
     </div>
   );
